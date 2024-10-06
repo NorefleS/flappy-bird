@@ -181,7 +181,6 @@ function gamePlay() {
     bird.drawAnimation();
     bird.update();
     document.addEventListener('keyup', control);
-    document.addEventListener('keyup input', controlMobile);
     collision();
     drawScore(210, 50, 50);
 }
@@ -196,19 +195,9 @@ function control(event) {
     }
 }
 
-function controlMobile(event) {
-    if (event.code == 'touchstart') {
-        bird.wingSound.play();
-        bird.birdVelocityFall = bird.flapSpeed;
-    } else {
-        bird.birdVelocityFall = 0;
-    }
-}
-
 // Конец игры
 function gameOver() {
     document.removeEventListener('keyup', control);
-    document.removeEventListener('keyup input', controlMobile);
     endGame.gameOver();
     drawScore(285, 348, 27);
     drawBestScore(285, 390, 27);
