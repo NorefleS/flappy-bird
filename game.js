@@ -181,7 +181,7 @@ function gamePlay() {
     bird.drawAnimation();
     bird.update();
     document.addEventListener('keyup', control);
-    document.addEventListener('keydown input', control);
+    document.addEventListener('keyup input', controlMobile);
     collision();
     drawScore(210, 50, 50);
 }
@@ -191,7 +191,13 @@ function control(event) {
     if (event.code == 'Space') {
         bird.wingSound.play();
         bird.birdVelocityFall = bird.flapSpeed;
-    } else if (event.code == 'touchstart') {
+    } else {
+        bird.birdVelocityFall = 0;
+    }
+}
+
+function controlMobile(event) {
+    if (event.code == 'touchstart') {
         bird.wingSound.play();
         bird.birdVelocityFall = bird.flapSpeed;
     } else {
@@ -202,7 +208,7 @@ function control(event) {
 // Конец игры
 function gameOver() {
     document.removeEventListener('keyup', control);
-    document.removeEventListener('keydown input', control);
+    document.removeEventListener('keyup input', controlMobile);
     endGame.gameOver();
     drawScore(285, 348, 27);
     drawBestScore(285, 390, 27);
