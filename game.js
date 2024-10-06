@@ -181,13 +181,17 @@ function gamePlay() {
     bird.drawAnimation();
     bird.update();
     document.addEventListener('keyup', control);
+    document.addEventListener('keyup input', control);
     collision();
     drawScore(210, 50, 50);
 }
 
 // Управление птицей
 function control(event) {
-    if (event.code == 'Space' || event.code == 'touchstart') {
+    if (event.code == 'Space') {
+        bird.wingSound.play();
+        bird.birdVelocityFall = bird.flapSpeed;
+    } else if (event.code == 'touchstart') {
         bird.wingSound.play();
         bird.birdVelocityFall = bird.flapSpeed;
     } else {
@@ -198,6 +202,7 @@ function control(event) {
 // Конец игры
 function gameOver() {
     document.removeEventListener('keyup', control);
+    document.removeEventListener('keyup input', control);
     endGame.gameOver();
     drawScore(285, 348, 27);
     drawBestScore(285, 390, 27);
