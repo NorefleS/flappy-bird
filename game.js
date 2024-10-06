@@ -181,7 +181,7 @@ function gamePlay() {
     bird.drawAnimation();
     bird.update();
     document.addEventListener('keyup', control);
-    document.addEventListener('keyup input', control);
+    document.addEventListener('keydown input', control);
     collision();
     drawScore(210, 50, 50);
 }
@@ -202,7 +202,7 @@ function control(event) {
 // Конец игры
 function gameOver() {
     document.removeEventListener('keyup', control);
-    document.removeEventListener('keyup input', control);
+    document.removeEventListener('keydown input', control);
     endGame.gameOver();
     drawScore(285, 348, 27);
     drawBestScore(285, 390, 27);
